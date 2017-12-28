@@ -26,7 +26,7 @@
 					html: items.join( '' )
 				}).appendTo( 'div.listrepos' );
 			});
-			$.getJSON('https://api.github.com/users/velizarn/gists/public?sort=updated&direction=desc&type=owner&', function( data ) {
+			$.getJSON('https://api.github.com/users/velizarn/gists?sort=updated&direction=desc&type=owner&', function( data ) {
 				var items = [];
 				$.each( data, function( key, item ) {
 					var filenames = Object.keys(item.files);
