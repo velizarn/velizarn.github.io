@@ -1,88 +1,86 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Velizarn.GitHub.io by velizarn</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<script>
-		$(document).ready(function(){
-			$.getJSON('https://api.github.com/users/velizarn/repos?sort=updated&direction=desc&type=owner&visibility=public', function( data ) {
-				var items = [];
-				$.each( data, function( key, item ) {
-					items.push( '<h4 id="' + item.name + '.' + key + '">' + item.name + '</h4><blockquote><p>' );
-					if (item.description !== null) items.push( '' + item.description + '<br />' );
-					items.push( '<a href="' + item.html_url + '" title="' + item.name + '" target="_blank">' + item.html_url + '</a></p></blockquote>' );
-				});
-				$( '<div/>', {
-					"class": "repo-list",
-					html: items.join( '' )
-				}).appendTo( 'div.listrepos' );
+<!doctype html><html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>Velizarn.GitHub.io by velizarn</title>
+<link rel="stylesheet" href="stylesheets/styles.css">
+<link rel="stylesheet" href="stylesheets/github-dark.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="javascripts/main.js"></script>
+<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script>
+	$(document).ready(function(){
+		$.getJSON('https://api.github.com/users/velizarn/repos?sort=updated&direction=desc&type=owner&visibility=public', function( data ) {
+			var items = [];
+			$.each( data, function( key, item ) {
+				items.push( '<h4 id="' + item.name + '.' + key + '">' + item.name + '</h4><blockquote><p>' );
+				if (item.description !== null) items.push( '' + item.description + '<br />' );
+				items.push( '<a href="' + item.html_url + '" title="' + item.name + '" target="_blank">' + item.html_url + '</a></p></blockquote>' );
 			});
-			$.getJSON('https://api.github.com/users/velizarn/gists?sort=updated&direction=desc&type=owner&', function( data ) {
-				var items = [];
-				$.each( data, function( key, item ) {
-					var filenames = Object.keys(item.files);
-					items.push( '<h4 id="' + filenames[0] + '.' + key + '">' + filenames[0] + '</h4><blockquote><p>' );
-					if (item.description !== null && item.description !== '') items.push( '' + item.description + '<br />' );
-					items.push( '<a href="' + item.html_url + '" title="' + filenames[0] + '" target="_blank">' + item.html_url + '</a></p></blockquote>' );
-				});
-				$( '<div/>', {
-					"class": "gist-list",
-					html: items.join( '' )
-				}).appendTo( 'div.listgists' );
-			});
+			if (items.length >= 1) { $('.listrepos .loading').remove(); }
+			$( '<div/>', { "class": "repo-list", html: items.join( '' ) }).appendTo( 'div.listrepos' );
 		});
-	</script>
-	<style>
-		h2.highlight { border-bottom: 1px solid #eee; padding-bottom: 7px; margin-bottom: 3px; }
-	</style>
-  </head>
-  <body>
+		$.getJSON('https://api.github.com/users/velizarn/gists?sort=updated&direction=desc&type=owner&', function( data ) {
+			var items = [];
+			$.each( data, function( key, item ) {
+				var filenames = Object.keys(item.files);
+				items.push( '<h4 id="' + filenames[0] + '.' + key + '">' + filenames[0] + '</h4><blockquote><p>' );
+				if (item.description !== null && item.description !== '') items.push( '' + item.description + '<br />' );
+				items.push( '<a href="' + item.html_url + '" title="' + filenames[0] + '" target="_blank">' + item.html_url + '</a></p></blockquote>' );
+			});
+			if (items.length >= 1) { $('.listgists .loading').remove(); }
+			$( '<div/>', { "class": "gist-list",  html: items.join( '' ) }).appendTo( 'div.listgists' );
+		});
+	});
+</script>
+<style>
+	h2.highlight { border-bottom: 1px solid #eee; padding-bottom: 7px; margin-bottom: 3px; }
+	.loading { font-style: italic; color: #666; }
+	footer p:first-child a { color: #393939; font: 0.95em Verdana, sans-serif; }
+</style>
+</head>
+<body>
 
-      <header>
-        <h1>Velizarn.GitHub.io</h1>
-        <p>Velizarn website https://velizarn.github.io</p>
-      </header>
+	<header>
+		<h1>Velizarn.GitHub.io</h1>
+    	<p>Velizarn website https://velizarn.github.io</p>
+	</header>
 
-      <div id="banner">
-        <span id="logo"></span>
+	<div id="banner">
+		<span id="logo"></span>
+		<a href="https://github.com/velizarn" class="button fork"><strong>View On GitHub</strong></a>
+	</div><!-- end banner -->
 
-        <a href="https://github.com/velizarn" class="button fork"><strong>View On GitHub</strong></a>
-      </div><!-- end banner -->
+	<div class="wrapper">
+		<nav>
+    		<ul></ul>
+		</nav>
+		<section>
 
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-
-      	<div class="listrepos">
-      		<h2 id="Repositories" class="highlight"><a href="#Repositories"></a>Repositories</h2>
-      		<p align="right"><a href="https://github.com/velizarn?tab=repositories"><i>View all repositories on Github &raquo;</i></a></p>
+		<div class="listrepos">
+			<h2 id="Repositories" class="highlight"><a href="#Repositories"></a>Repositories</h2>
+			<p align="right"><a href="https://github.com/velizarn?tab=repositories"><i>View all repositories on Github &raquo;</i></a></p>
+			<p class="loading">Loading, please wait...</p>
 
 		</div>
 		<br />
 
-      	<div class="listgists">
-      		<h2 id="Gists" class="highlight"><a href="#Gists"></a>Gists</h2>
+		<div class="listgists">
+			<h2 id="Gists" class="highlight"><a href="#Gists"></a>Gists</h2>
 			<p align="right"><a href="https://gist.github.com/velizarn"><i>View all gists on Github &raquo;</i></a></p>
+			<p class="loading">Loading, please wait...</p>
 
 		</div>
 
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-
-  </body>
+		</section>
+		<footer>
+			<p><small><a href="https://www.linkedin.com/in/velizarnenov" target="_blank">www.linkedin.com/in/velizarnenov</a> &rarr;</small></p>
+			<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+		</footer>
+	</div>
+	<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+</body>
 </html>
