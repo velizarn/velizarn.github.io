@@ -29,7 +29,7 @@
 				var filenames = Object.keys(item.files);
 				items.push( '<h4 id="' + filenames[0] + '.' + key + '">' + filenames[0] + '</h4><blockquote><p>' );
 				if (item.description !== null && item.description !== '') items.push( '' + item.description + '<br />' );
-				items.push( '<a href="' + item.html_url + '?ts=2" title="' + filenames[0] + '" target="_blank">' + item.html_url + '</a></p></blockquote>' );
+				items.push( '<a href="https://gist.github.com/velizarn/' + item.id + '?ts=2" title="' + filenames[0] + '" target="_blank">' + item.html_url + '</a></p></blockquote>' );
 			});
 			if (items.length >= 1) { $('.listgists .loading').remove(); }
 			$( '<div/>', { "class": "gist-list",  html: items.join( '' ) }).appendTo( 'div.listgists' );
