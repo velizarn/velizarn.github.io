@@ -15,7 +15,7 @@
 	$(document).ready(function(){
 		$.getJSON('https://api.github.com/users/velizarn/repos?sort=updated&direction=desc&type=owner&visibility=public', function( data ) {
 			var items = [], repos = [];
-			repos = data.filter(function(item){ return item.fork === false; })
+			repos = data.filter(function(item){ return item.fork === false; });
 			$.each( repos, function( key, item ) {
 				items.push( '<h4 id="' + item.name + '.' + key + '">' + item.name + '</h4><blockquote><p>' );
 				if (item.description !== null) items.push( '' + item.description + '<br />' );
